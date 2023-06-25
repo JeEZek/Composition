@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.composition.R
 import com.example.composition.databinding.FragmentChooseLevelBinding
-import com.example.composition.databinding.FragmentGameFinishedBinding
+import com.example.composition.databinding.FragmentWelcomeBinding
+import com.example.composition.domain.entity.Level
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class ChooseLevelFragment : Fragment() {
 
@@ -22,15 +21,50 @@ class ChooseLevelFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_choose_level, container, false)
+        _binding = FragmentChooseLevelBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setOnClickListeners()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setOnClickListeners() {
+        with(binding) {
+            bLevelTest.setOnClickListener {
+                launchGameFragment(Level.TEST)
+            }
+            bLevelEasy.setOnClickListener {
+                launchGameFragment(Level.EASY)
+            }
+            bLevelNormal.setOnClickListener {
+                launchGameFragment(Level.NORMAL)
+            }
+            bLevelHard.setOnClickListener {
+                launchGameFragment(Level.HARD)
+            }
+        }
+    }
+
+    private fun launchGameFragment(level: Level) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.mainContainer, GameFragment.newInstance(level))
+            .addToBackStack(GameFragment.NAME)
+            .commit()
+    }
+
+    companion object {
+
+        const val NAME = "ChooseLevelFragment"
+
+        fun newInstance(): ChooseLevelFragment {
+            return ChooseLevelFragment()
+        }
     }
 }

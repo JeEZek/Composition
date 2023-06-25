@@ -15,7 +15,6 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:layout_marginTop="32dp"
             android:src="@drawable/character" />
 
         <TextView
@@ -29,12 +28,14 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/bLevelTest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp" />
 
         <Button
+            android:id="@+id/bLevelEasy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -43,6 +44,7 @@
             android:text="@string/easy" />
 
         <Button
+            android:id="@+id/bLevelNormal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -51,6 +53,7 @@
             android:text="@string/normal" />
 
         <Button
+            android:id="@+id/bLevelHard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
