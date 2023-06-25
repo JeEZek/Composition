@@ -6,16 +6,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.composition.R
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.composition.databinding.FragmentGameBinding
+import com.example.composition.databinding.FragmentGameFinishedBinding
+import kotlin.RuntimeException
 
 class GameFragment : Fragment() {
+
+    private var _binding: FragmentGameBinding? = null
+    private val binding: FragmentGameBinding
+        get() = _binding ?: throw RuntimeException("FragmentGameBinding = null")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_game, container, false)
+    ): View {
+        _binding = FragmentGameBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
