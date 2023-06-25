@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Composition</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rules">Правила игры…
+…
+…
+    </string>
+    <string name="name_of_game">Состав числа</string>
+    <string name="understand">ПОНЯТНО</string>
+    <string name="progress_answers">Правильных ответов %s (минимум %s)</string>
+    <string name="easy">ЛЕГКИЙ</string>
+    <string name="normal">СРЕДНИЙ</string>
+    <string name="hard">СЛОЖНЫЙ</string>
+    <string name="chouse_lvl">Выберите уровень сложности</string>
+    <string name="question_number">.?</string>
+    <string name="count_right_answer">Количество ответов %s / %s</string>
+    <string name="percent_right_answers">Процент правильных ответов %s / %s</string>
+    <string name="try_again">ПОПРОБОВАТЬ СНОВА</string>
 </resources>
