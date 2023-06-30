@@ -25,7 +25,8 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@+id/ivLogo"
-        tools:background="@android:color/holo_red_light" />
+        tools:background="@android:color/holo_red_light"
+        tools:layout_editor_absoluteX="16dp" />
 
     <TextView
         android:id="@+id/tvPercentRightAnswers"
@@ -37,7 +38,8 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@+id/tvCountRightAnswer"
-        tools:background="@android:color/holo_green_light" />
+        tools:background="@android:color/holo_green_light"
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/bTryAgain"

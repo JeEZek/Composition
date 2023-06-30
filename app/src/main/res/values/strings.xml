@@ -12,7 +12,7 @@
     <string name="normal">СРЕДНИЙ</string>
     <string name="hard">СЛОЖНЫЙ</string>
     <string name="chouse_lvl">Выберите уровень сложности</string>
-    <string name="question_number">.?</string>
+    <string name="question_number">?</string>
     <string name="count_right_answer">Количество ответов %s / %s</string>
     <string name="percent_right_answers">Процент правильных ответов %s / %s</string>
     <string name="try_again">ПОПРОБОВАТЬ СНОВА</string>

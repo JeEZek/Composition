@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.composition.R
 import com.example.composition.databinding.FragmentGameFinishedBinding
 import com.example.composition.domain.entity.GameResult
 
@@ -33,12 +35,81 @@ class GameFinishedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpClickListeners()
+        bindViews()
+    }
+
+    private fun bindViews() {
+        val minCountOfRightAnswers = gameResult.gameSettings.minCountOfRightAnswers
+        val countRightOfAnswers = gameResult.countOfRightAnswers
+        val minPercentOfRightAnswers = gameResult.gameSettings.minPresentOfRightAnswers
+        val countOfQuestions = gameResult.countOfQuestions
+        val percentOfRightAnswers = getPercentOfRightAnswers(
+            countRightOfAnswers,
+            countOfQuestions
+        )
+
+        with(binding) {
+            tvCountRightAnswer.text = String.format(
+                getString(R.string.count_right_answer),
+                countRightOfAnswers,
+                minCountOfRightAnswers
+            )
+            tvPercentRightAnswers.text = String.format(
+                getString(R.string.percent_right_answers),
+                percentOfRightAnswers,
+                minPercentOfRightAnswers
+            )
+            tvCountRightAnswer.setBackgroundColor(
+                getColorCountRightAnswerResId(
+                    countRightOfAnswers,
+                    minCountOfRightAnswers
+                )
+            )
+            tvPercentRightAnswers.setBackgroundColor(
+                getColorPercentRightAnswerResId(
+                    percentOfRightAnswers,
+                    minPercentOfRightAnswers
+                )
+            )
+        }
+    }
+
+    private fun getColorCountRightAnswerResId(
+        countRightOfAnswers: Int,
+        minCountOfRightAnswers: Int
+    ): Int {
+        val colorResId = if (countRightOfAnswers >= minCountOfRightAnswers) {
+            android.R.color.holo_green_light
+        } else (
+                android.R.color.holo_red_light
+                )
+        return ContextCompat.getColor(requireContext(), colorResId)
+    }
+
+    private fun getColorPercentRightAnswerResId(
+        percentOfRightAnswers: Int,
+        minPercentOfRightAnswers: Int
+    ): Int {
+        val colorResId = if (percentOfRightAnswers >= minPercentOfRightAnswers) {
+            android.R.color.holo_green_light
+        } else {
+            android.R.color.holo_red_light
+        }
+        return ContextCompat.getColor(requireContext(), colorResId)
+    }
+
+    private fun getPercentOfRightAnswers(countRightOfAnswers: Int, countOfQuestions: Int): Int {
+        return 100 * countRightOfAnswers / countOfQuestions
+    }
+
+    private fun setUpClickListeners() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 retryGame()
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         binding.bTryAgain.setOnClickListener {
             retryGame()
         }
